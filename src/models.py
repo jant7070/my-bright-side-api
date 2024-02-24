@@ -7,7 +7,8 @@ class User(db.Model): #Parent
     name = db.Column(db.String(120), unique=False, nullable=False)
     last_name = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    hashed_password = db.Column(db.String(150), unique=False, nullable=False)
+    salt = db.Column(db.String(150), unique=False, nullable=False)
     receipt = db.relationship("Receipt", back_populates="user")
     photos = db.relationship("Photos", back_populates="user")
 
@@ -56,3 +57,8 @@ class Photos(db.Model): #Child
             "file": self.file,
             "user_id": self.user_id,
         }
+
+class News(db.Model):   
+    id = db.Column(db.Integer, primary_key=True)
+    file = db.Column(db.String(1000), unique=False, nullable=False)
+
