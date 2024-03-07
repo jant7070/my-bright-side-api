@@ -65,7 +65,7 @@ class Files(db.Model): #Child
     name = db.Column(db.String(250), unique=False, nullable=False)
     file = db.Column(db.String(500), unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    user = db.relationship("User", back_populates="receipt") 
+    user = db.relationship("User", back_populates="files") 
 
     def __repr__(self):
         return '<Files %r>' % self.number
