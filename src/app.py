@@ -20,7 +20,6 @@ app.url_map.strict_slashes = False
 
 #jwt config
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")  
-
 jwt = JWTManager(app)
 
 
@@ -146,7 +145,12 @@ def handle_user_login():
             "msg": "Incorrect password"
         }), 401
 
-
+    #create access token
+    token = create_access_token(identity = user.id)
+    return jsonify({
+        "token": token,
+        "user_type": "user"
+    })
 
 
 @app.route('/user/<int:id>', methods=['GET'])
