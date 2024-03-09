@@ -150,7 +150,7 @@ def handle_user_login():
     return jsonify({
         "token": token,
         "user_type": "user"
-    })
+    }), 201
 
 
 @app.route('/user/<int:id>', methods=['GET'])
